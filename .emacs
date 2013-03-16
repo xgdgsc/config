@@ -16,14 +16,15 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "/usr/share/emacs/site-lisp/auto-complete/ac-dict")
 (ac-config-default)
-(setq ac-auto-start 1)
+
 ;; show menu immediately...
 (setq ac-auto-show-menu t)
-(add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)    
-(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)    
-(add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)    
-(add-hook 'css-mode-hook 'ac-css-mode-setup)    
-(add-hook 'auto-complete-mode-hook 'ac-common-setup)    
+;; (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)    
+;; (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)    
+;; (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)    
+;; (add-hook 'css-mode-hook 'ac-css-mode-setup)    
+;; (add-hook 'auto-complete-mode-hook 'ac-common-setup)   
+
 
 
 
@@ -98,9 +99,19 @@
 					      (cons "\\." '(ac-source-clang)))
 				 (add-to-list 'ac-omni-completion-sources
 					      (cons "->" '(ac-source-clang)))
-				 (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources))))
+				 (setq ac-sources (append '(ac-source-clang) ac-sources))))
+;; (setq ac-sources (append '(ac-source-filename  ac-source-functions ac-source-variables ac-source-symbols ac-source-features ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-dictionary)))
+
+
 (setq ac-clang-auto-save t)  
 (my-ac-config)  
+(ac-config-default)
+
+(require 'pos-tip)
+(setq ac-quick-help-prefer-pos-tip t)   ;default is t
+(setq ac-trigger-commands
+      (cons 'backward-delete-char-untabify ac-trigger-commands))
+
 
 
 (global-set-key [f11] 'my-fullscreen) ;; 启动全屏的快捷键
