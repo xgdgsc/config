@@ -1,21 +1,32 @@
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark)))
- '(eclim-eclipse-dirs (quote ("/opt/eclipse")))
- '(eclim-executable "/opt/eclipse/eclim")
+ '(custom-enabled-themes (quote (solarized-light)))
+ '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(eclim-eclipse-dirs (quote ("/usr/share/eclipse")))
+ '(eclim-executable "/usr/share/eclipse/eclim")
+ '(font-use-system-font t)
  '(semantic-c-dependency-system-include-path (quote ("/usr/include" "/usr/include/c++/4.7.2/" "/usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/include/")))
- '(session-use-package t nil (session)))
+ '(show-paren-mode t)
+ '(wg-query-for-save-on-emacs-exit t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "文泉驿等宽微米黑" :foundry "unknown" :slant normal :weight normal :height 128 :width normal))))
+ '(wg-current-workgroup-face ((t (:foreground "black")))))
 (put 'upcase-region 'disabled nil)
 (add-to-list 'load-path "/usr/share/auto-complete/")
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+(require 'package) 
+(package-initialize)
+
 
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "/usr/share/auto-complete/ac-dict")
@@ -51,12 +62,8 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
-
-
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/cedet/common/")
-(load-file "/usr/share/emacs/site-lisp/cedet/common/cedet.el")
-
-(semantic-load-enable-excessive-code-helpers)
+(semantic-mode 1)
+;;(semantic-load-enable-excessive-code-helpers) 
 ;;(semantic-load-enable-semantic-debugging-helpers)
 (global-set-key [f8] 'semantic-ia-fast-jump)
 
@@ -70,7 +77,7 @@
 
 ;; Semantic with ghost display (allows M-n and M-p to browse 
 ;; completion).
-(require 'semantic-ia)
+;; (require 'semantic-ia)
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -142,7 +149,7 @@
 (setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode))                          
 			      auto-mode-alist))     
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/autopair.el")
+
 (require 'autopair)
 (autopair-global-mode) ;; enable autopair in all buffers 
 
@@ -251,21 +258,84 @@ Emacs buffers are those whose name starts with *."
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-(add-to-list 'load-path "/home/gsc/.emacs.d/elpa/emacs-eclim-20130310.1237/")
-(require 'eclim)
-(global-eclim-mode)
+;; (add-to-list 'load-path "/home/gsc/.emacs.d/elpa/emacs-eclim-20130310.1237/")
+;; (require 'eclim)
+;; (global-eclim-mode)
 
 
 
-(setq help-at-pt-display-when-idle t)
-(setq help-at-pt-timer-delay 0.1)
-(help-at-pt-set-timer)
+;; (setq help-at-pt-display-when-idle t)
+;; (setq help-at-pt-timer-delay 0.1)
+;; (help-at-pt-set-timer)
 
-;; add the emacs-eclim source
-(require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
+;; ;; add the emacs-eclim source
+;; (require 'ac-emacs-eclim-source)
+;; (ac-emacs-eclim-config)
 
-(add-hook 'eclim-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-emacs-eclim)
-            (add-to-list 'ac-sources 'ac-source-emacs-eclim-c-dot)))
+;; (add-hook 'eclim-mode-hook
+;;           (lambda ()
+;;             (add-to-list 'ac-sources 'ac-source-emacs-eclim)
+;;             (add-to-list 'ac-sources 'ac-source-emacs-eclim-c-dot)))
+
+;; add hook flyspell to latex mode
+(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+
+(require 'auctex-autoloads)
+(require 'preview)
+
+(require 'color-theme)
+(require 'color-theme-solarized)
+
+(color-theme-solarized-light)
+
+;; (add-to-list 'load-path "/home/gsc/.emacs.d/elpa/workgroups-20110724.1825/")
+;; (require 'workgroups)
+;; (workgroups-mode 1)
+;; (wg-load "/home/gsc/.emacs.d/workgroups")
+
+(require 'jedi)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+(setq jedi:setup-keys t)
+
+;; (add-to-list 'load-path "/home/gsc/.emacs.d/elpa/predictive/latex")
+;; (add-to-list 'load-path "/home/gsc/.emacs.d/elpa/predictive/")
+;; (add-to-list 'load-path "/home/gsc/.emacs.d/elpa/predictive/texinfo")
+;; (add-to-list 'load-path "/home/gsc/.emacs.d/elpa/predictive/html")
+;; (require 'predictive)
+;; (autoload 'predictive-mode "predictive" "predictive" t)
+;; (set-default 'predictive-auto-add-to-dict t)
+;; (setq predictive-main-dict 'rpg-dictionary
+;;       predictive-auto-learn t
+;;       predictive-add-to-dict-ask nil
+;;       predictive-use-auto-learn-cache nil
+;;       predictive-which-dict t)
+
+(setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+
+
+ 
+
+(delete-selection-mode 1)
+(setq pkgbuild-update-md5sums-on-save nil)
+
+
+
+(require 'ac-math)
+
+(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+
+(defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
+  (setq ac-sources
+     (append '(ac-source-math-unicode ac-source-math-latex ac-source-latex-commands)
+               ac-sources)))
+
+(add-hook 'latex-mode-hook 'ac-latex-mode-setup)
+
+(ac-flyspell-workaround)
+
+
+(add-to-list 'auto-mode-alist '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("perl5" . cperl-mode))
+(add-to-list 'interpreter-mode-alist '("miniperl" . cperl-mode))
