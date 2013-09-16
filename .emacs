@@ -20,7 +20,7 @@
  '(default ((t (:family "文泉驿等宽微米黑" :foundry "unknown" :slant normal :weight normal :height 128 :width normal))))
  '(wg-current-workgroup-face ((t (:foreground "black")))))
 (put 'upcase-region 'disabled nil)
-(add-to-list 'load-path "/usr/share/auto-complete/")
+
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -82,49 +82,21 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(require 'auto-complete-clang)
+(require 'auto-complete-clang-async)
 (setq clang-completion-suppress-error 't)
 
+(defun ac-cc-mode-setup ()
+  (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
+  (setq ac-sources '(ac-source-clang-async))
+  (ac-clang-launch-completion-process)
+)
 
-;; auto-complete-clang config stuff
-(defun my-ac-config ()    
-  (setq ac-clang-flags    
-        (mapcar(lambda (item)(concat "-I" item))    
-               (split-string    
-                "  
-/usr/include/c++/4.7.2
-/usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/../../../../include/c++/4.7.2
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/../../../../include/c++/4.7.2/x86_64-unknown-linux-gnu
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/../../../../include/c++/4.7.2/backward
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/include
- /usr/local/include
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.7.2/include-fixed
- /usr/include
-"  
-		))))
+(defun my-ac-config ()
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
 
-(defun my-ac-cc-mode-setup ()    
-  (setq ac-sources (append '(ac-source-clang) ac-sources)))    
-(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)    
-
-(add-hook 'c-mode-common-hook '(lambda ()
-				 (add-to-list 'ac-omni-completion-sources
-					      (cons "\\." '(ac-source-clang)))
-				 (add-to-list 'ac-omni-completion-sources
-					      (cons "->" '(ac-source-clang)))
-				 (setq ac-sources (append '(ac-source-clang) ac-sources))))
-;; (setq ac-sources (append '(ac-source-filename  ac-source-functions ac-source-variables ac-source-symbols ac-source-features ac-source-abbrev ac-source-words-in-same-mode-buffers ac-source-dictionary)))
-
-
-;;(setq ac-clang-auto-save t)  
-(my-ac-config)  
-(ac-config-default)
-
-;; (require 'pos-tip)
-;; (setq ac-quick-help-prefer-pos-tip t)   ;default is t
-(setq ac-trigger-commands
-      (cons 'backward-delete-char-untabify ac-trigger-commands))
-
+(my-ac-config)
 
 
 (global-set-key [f11] 'my-fullscreen) ;; 启动全屏的快捷键
