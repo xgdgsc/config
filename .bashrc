@@ -17,7 +17,8 @@ alias free='free -m'                      # show sizes in MB
 alias vp='vim PKGBUILD'
 alias vs='vim SPLITBUILD'
 alias ec='emacsclient'
-
+alias svnconflict="svn status | grep -P '^(?=.{0,6}C)'"
+alias rscp='rsync -v -P -a -r -e ssh'
 #Konsole history issue
 shopt -s histappend
 [[ "${PROMPT_COMMAND}" ]] && PROMPT_COMMAND="$PROMPT_COMMAND;history -a" || PROMPT_COMMAND="history -a"
@@ -60,7 +61,9 @@ export VISUAL=vim
 #export PATH=$PATH:/home/gsc/Apps/android-sdk-linux/tools
 #export PATH=$PATH:/opt/android-sdk/platform-tools/
 #export PATH=$PATH:/opt/android-sdk/tools
+export MAX_JAVA_MEMORY=4096
 
+export PATH=$PATH:/usr/share/eclipse
 alias releaseRightMouse='xdotool mouseup 3'
 alias wine='env LANG=zh_CN.UTF-8 wine'
 alias startipv6='sudo /etc/rc.d/isatapd start'
@@ -104,14 +107,16 @@ alias mks='makepkg -S'
 alias ya='yaourt'
 alias ssc='sudo systemctl'
 alias chawe='vim ~/.config/awesome/rc.lua'
+
+alias svnaddall='svn add --force * --auto-props --parents --depth infinity -q'
 fortune | cowsay -n -f $(ls /usr/share/cows/ | shuf -n1)
 
 export CCACHE_DIR=/tmp/
 export PATH="/opt/java/bin/:/usr/lib/ccache/bin/:$PATH"
 VBOX_USB=usbfs
-alias mountMTP="go-mtpfs /home/gsc/tmp"
-alias umountMTP="fusermount -u /home/gsc/tmp"
-
+alias mountMTP="go-mtpfs /home/gsc/MTP"
+alias umountMTP="fusermount -u /home/gsc/MTP"
+alias E="SUDO_EDITOR=\"emacsclient\" sudo -e"
 
 BLUE=`tput setf 1`
 GREEN=`tput setf 2`
@@ -121,3 +126,6 @@ MAGENTA=`tput setf 5`
 YELLOW=`tput setf 6`
 WHITE=`tput setf 7`
 PS1='\[$GREEN\]\u@\h \[$BLUE\]\w/\[$GREEN\] \$\[$WHITE\] '
+HISTFILESIZE=10000
+HISTSIZE=5000
+
