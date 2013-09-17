@@ -18,7 +18,7 @@ alias vp='vim PKGBUILD'
 alias vs='vim SPLITBUILD'
 alias ec='emacsclient'
 alias svnconflict="svn status | grep -P '^(?=.{0,6}C)'"
-alias rscp='rsync -v -P -a -r -e ssh'
+alias rscp='rsync -v -P -a -z -e ssh'
 #Konsole history issue
 shopt -s histappend
 [[ "${PROMPT_COMMAND}" ]] && PROMPT_COMMAND="$PROMPT_COMMAND;history -a" || PROMPT_COMMAND="history -a"
