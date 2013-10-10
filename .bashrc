@@ -96,6 +96,7 @@ alias chmirror="sudo vim /etc/pacman.d/mirrorlist"
 #alias chconf="sudo vim /etc/rc.conf"
 alias chpac="sv /etc/pacman.conf"
 alias chhosts="sv /etc/hosts"
+alias chresolv="sv /etc/resolv.conf"
 alias chgrub="sv /etc/default/grub"
 alias xterm='xterm -font -*-droid\ sans-*-*-*-*-*-*-*-*-*-*-*-*'
 alias iotop='sudo iotop'
