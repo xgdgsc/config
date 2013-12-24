@@ -43,8 +43,8 @@
 
 
 
-(autoload 'python-mode "python-mode.el" "Python mode." t)
-(setq auto-mode-alist (append '(("/*.\.py$" . python-mode)) auto-mode-alist))
+;;(autoload 'python-mode "python-mode.el" "Python mode." t)
+;;(setq auto-mode-alist (append '(("/*.\.py$" . python-mode)) auto-mode-alist))
 
 					;(add-to-list 'load-path "/home/gsc/.emacs.d/elpa/yasnippet-0.8.0/")
 					;(require 'yasnippet)
@@ -311,3 +311,16 @@ Emacs buffers are those whose name starts with *."
 (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
 (add-to-list 'interpreter-mode-alist '("perl5" . cperl-mode))
 (add-to-list 'interpreter-mode-alist '("miniperl" . cperl-mode))
+
+
+(require 'php-mode)
+
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;;(setq max-lisp-eval-depth 10000)
+;;(setq debug-on-error t) 
+(elpy-enable)
