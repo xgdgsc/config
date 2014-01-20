@@ -62,7 +62,7 @@ export VISUAL=vim
 #export PATH=$PATH:/opt/android-sdk/platform-tools/
 #export PATH=$PATH:/opt/android-sdk/tools
 export MAX_JAVA_MEMORY=4096
-
+export NLTK_DATA=/home/gsc/nltk_data 
 export PATH=$PATH:/usr/share/eclipse
 alias releaseRightMouse='xdotool mouseup 3'
 alias wine='env LANG=zh_CN.UTF-8 wine'
@@ -97,6 +97,7 @@ alias chmirror="sudo vim /etc/pacman.d/mirrorlist"
 alias chpac="sv /etc/pacman.conf"
 alias chhosts="sv /etc/hosts"
 alias chresolv="sv /etc/resolv.conf"
+alias chvpnresolv="sudo cp /etc/resolv.conf.lab /etc/resolv.conf"
 alias chgrub="sv /etc/default/grub"
 alias xterm='xterm -font -*-droid\ sans-*-*-*-*-*-*-*-*-*-*-*-*'
 alias iotop='sudo iotop'
