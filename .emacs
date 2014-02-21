@@ -324,3 +324,5 @@ Emacs buffers are those whose name starts with *."
 ;;(setq max-lisp-eval-depth 10000)
 ;;(setq debug-on-error t) 
 (elpy-enable)
+(require 'ess-site)
+(global-set-key (kbd "RET") 'newline-and-indent)
