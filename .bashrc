@@ -69,7 +69,6 @@ export NLTK_DATA=/home/gsc/nltk_data
 export PATH=$PATH:/usr/share/eclipse
 alias releaseRightMouse='xdotool mouseup 3'
 alias wine='env LANG=zh_CN.UTF-8 wine'
-alias startipv6='sudo /etc/rc.d/isatapd start'
 #alias killwine="ps ax | egrep "*.exe|*exe]" | awk '{ print $1 }' | xargs kill"
 alias vi=vim
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
@@ -108,7 +107,7 @@ alias top='htop'
 alias opacman='pacman-optimize && sync'
 alias punzip='python2 /home/gsc/Documents/punzip.py'
 alias mkp='makepkg -c -s -i'
-alias mks='makepkg -S'
+alias mks='mkaurball'
 alias ya='yaourt'
 alias ssc='sudo systemctl'
 alias chawe='vim ~/.config/awesome/rc.lua'
@@ -116,6 +115,7 @@ alias chawe='vim ~/.config/awesome/rc.lua'
 alias svnaddall='svn add --force * --auto-props --parents --depth infinity -q'
 fortune | cowsay -n -f $(ls /usr/share/cows/ | shuf -n1)
 
+export CUDA_HOME="/opt/cuda"
 export CCACHE_DIR=/tmp/
 export PATH="/opt/java/bin/:/usr/lib/ccache/bin/:$PATH"
 VBOX_USB=usbfs
