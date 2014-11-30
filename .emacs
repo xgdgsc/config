@@ -327,3 +327,4 @@ Emacs buffers are those whose name starts with *."
 (require 'ess-site)
 (global-set-key (kbd "RET") 'newline-and-indent)
 (require 'gnuplot-mode)
+(require 'vlf-integrate)
