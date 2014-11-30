@@ -21,7 +21,9 @@ alias svnconflict="svn status | grep -P '^(?=.{0,6}C)'"
 alias rscp='rsync -v -P -a -z -e ssh'
 alias start6='ssc start isatapd@isatap.tsinghua.edu.cn'
 alias stop6='ssc stop isatapd@isatap.tsinghua.edu.cn'
+alias restart6='stop6 && start6'
 alias status6='ssc status isatapd@isatap.tsinghua.edu.cn'
+alias go6='ssc stop goagent && python2 /home/gsc/goagent6/goagent'
 #Konsole history issue
 shopt -s histappend
 [[ "${PROMPT_COMMAND}" ]] && PROMPT_COMMAND="$PROMPT_COMMAND;history -a" || PROMPT_COMMAND="history -a"
@@ -89,8 +91,8 @@ alias clearRecent='rm /home/gsc/.local/share/recently-used.xbel'
 alias vihosts='sudo vim /etc/hosts'
 alias wproxy="export http_proxy='127.0.0.1:8086'"
 alias pproxy="export http_proxy='166.111.26.3:5678'"
-alias gproxy="export http_proxy='127.0.0.1:8089'"
-alias g6proxy="export http_proxy='127.0.0.1:8088'"
+#alias gproxy="export http_proxy='127.0.0.1:8089'"
+alias gproxy="export http_proxy='127.0.0.1:8089'&&export https_proxy='127.0.0.1:8089'"
 alias sproxy="export http_proxy='127.0.0.1:8081'"
 alias noproxy=""
 alias yup="yaourt -Syua"

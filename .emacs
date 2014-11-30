@@ -249,10 +249,12 @@ Emacs buffers are those whose name starts with *."
 ;;             (add-to-list 'ac-sources 'ac-source-emacs-eclim-c-dot)))
 
 ;; add hook flyspell to latex mode
-(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
 
-(require 'auctex-autoloads)
-(require 'preview)
+;; (require 'auctex-autoloads)
+	
+(load "auctex.el" nil t t)
+;; (load "preview-latex.el" nil t t)
 
 (require 'color-theme)
 (require 'color-theme-solarized)
@@ -289,8 +291,9 @@ Emacs buffers are those whose name starts with *."
 
 (delete-selection-mode 1)
 (setq pkgbuild-update-md5sums-on-save nil)
-
-
+(setq pkgbuild-update-sha1sums-on-save nil)
+(setq pkgbuild-update-sha512sums-on-save nil)
+(setq pkgbuild-update-sums-on-save nil)
 
 (require 'ac-math)
 
@@ -312,8 +315,6 @@ Emacs buffers are those whose name starts with *."
 (add-to-list 'interpreter-mode-alist '("miniperl" . cperl-mode))
 
 
-(require 'php-mode)
-
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
@@ -325,3 +326,4 @@ Emacs buffers are those whose name starts with *."
 (elpy-enable)
 (require 'ess-site)
 (global-set-key (kbd "RET") 'newline-and-indent)
+(require 'gnuplot-mode)
