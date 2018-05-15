@@ -89,11 +89,6 @@ alias sv='sudo vim'
 alias spu='sudo pacman -U'
 alias clearRecent='rm /home/gsc/.local/share/recently-used.xbel'
 alias vihosts='sudo vim /etc/hosts'
-alias wproxy="export http_proxy='127.0.0.1:8086'"
-alias pproxy="export http_proxy='166.111.26.3:5678'"
-#alias gproxy="export http_proxy='127.0.0.1:8089'"
-alias gproxy="export http_proxy='127.0.0.1:8089'&&export https_proxy='127.0.0.1:8089'"
-alias sproxy="export http_proxy='127.0.0.1:8081'"
 alias noproxy=""
 alias yup="yaourt -Syua"
 alias chmirror="sudo vim /etc/pacman.d/mirrorlist"
@@ -142,3 +137,5 @@ ssh() {
     fi
     command ssh "$@"
 }
+alias ss4proxy='export http_proxy="http://127.0.0.1:7777" && export https_proxy="http://127.0.0.1:7777"'
+alias mksrcinfo='makepkg --printsrcinfo > .SRCINFO'
